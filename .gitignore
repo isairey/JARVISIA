@@ -1,0 +1,16 @@
+venv/
+**pycache**/
+*.pyc
+*.pyo
+*.pyd
+
+build/
+dist/
+*.spec
+
+.idea/
+.vscode/
+
+database/memory.db
+
+.env
