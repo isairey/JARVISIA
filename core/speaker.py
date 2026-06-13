@@ -44,7 +44,9 @@ class Speaker:
 
         communicate = edge_tts.Communicate(
             texto,
-            self.voice
+            self.voice,
+            rate="-6%",
+            pitch="-2Hz"
         )
 
         await communicate.save(
