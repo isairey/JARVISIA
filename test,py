@@ -1,0 +1,35 @@
+print("INICIO TEST")
+
+class Brain:
+
+    def __init__(self):
+        self.notas = {}
+    
+    def procesar(self, texto):
+        print(f":received: {texto}")
+        
+        if "recuerda" in texto and "que" in texto:
+            print(":进入 RECORDAR")
+            contenido = texto.replace("recuerda que", "").strip()
+            
+            if contenido:
+                num = len(self.notas) + 1
+                self.notas[f"nota_{num}"] = contenido
+                print(f":guardado: {self.notas}")
+                return f"Guardado: {contenido}"
+        
+        if "recuerdas" in texto:
+            print(f":notas: {self.notas}")
+            if not self.notas:
+                return "No hay notas"
+            return str(self.notas)
+        
+        return "No entiendo"
+
+
+brain = Brain()
+
+while True:
+    texto = input("\nTu: ")
+    resp = brain.procesar(texto)
+    print(f"JARVIS: {resp}")
