@@ -16,12 +16,14 @@ from PySide6.QtGui import (
     QPainter,
     QColor,
     QPen,
-    QFont
+    QFont,
+    QPixmap
 )
 
 import psutil
 import math
 import datetime
+import os
 
 
 class ArcReactor(QWidget):
@@ -52,7 +54,8 @@ class ArcReactor(QWidget):
         center_x = self.width() / 2
         center_y = self.height() / 2
 
-        painter.fillRect(self.rect(), QColor(0, 0, 0))
+        # FONDO TRANSPARENTE para ver la imagen atrás
+        painter.fillRect(self.rect(), QColor(0, 0, 0, 180))
 
         glow_color = QColor(0, 255, 255)
 
@@ -138,9 +141,12 @@ class Hologram(QWidget):
             Qt.FramelessWindowHint
         )
 
+        # ===== FONDO DE IMAGEN =====
+        self.set_background_image()
+
         self.setStyleSheet("""
             QWidget{
-                background-color:black;
+                background-color:transparent;
                 color:#00FFFF;
             }
         """)
@@ -152,6 +158,52 @@ class Hologram(QWidget):
             self.actualizar_info
         )
         self.info_timer.start(1000)
+
+    def set_background_image(self):
+        """ imagen de fondo"""
+        
+        # Ruta de la imagen
+        imagen_path = "assets/pr.png"
+        
+        # Verificar si existe
+        if os.path.exists(imagen_path):
+            
+            # Cargar imagen
+            pixmap = QPixmap(imagen_path)
+            
+            if not pixmap.isNull():
+                
+                # Crear label para el fondo
+                self.fondo_label = QLabel(self)
+                self.fondo_label.setPixmap(pixmap)
+                self.fondo_label.setScaledContents(True)
+                self.fondo_label.setGeometry(self.rect())
+                self.fondo_label.lower()  # Mover al fondo
+                
+                print(f"[DEBUG] Fondo cargado: {imagen_path}")
+            
+            else:
+                print("[DEBUG] Error: imagen no se pudo cargar")
+                self.set_default_background()
+        else:
+            print(f"[DEBUG] Imagen no encontrada: {imagen_path}")
+            self.set_default_background()
+
+    def set_default_background(self):
+        """Fondo por defecto si no hay imagen"""
+        self.setStyleSheet("""
+            QWidget{
+                background-color:black;
+                color:#00FFFF;
+            }
+        """)
+
+    def resizeEvent(self, event):
+        """Redimensionar el fondo cuando cambie el tamaño"""
+        super().resizeEvent(event)
+        
+        if hasattr(self, 'fondo_label'):
+            self.fondo_label.setGeometry(self.rect())
 
     def build_ui(self):
 
@@ -178,6 +230,7 @@ class Hologram(QWidget):
 
         titulo.setStyleSheet("""
             color:#00FFFF;
+            background-color:transparent;
         """)
 
         layout.addWidget(titulo)
@@ -225,6 +278,7 @@ class Hologram(QWidget):
 
             lbl.setStyleSheet("""
                 color:#00FFFF;
+                background-color:rgba(0,0,0,150);
                 border:1px solid #00FFFF;
                 padding:10px;
             """)
@@ -249,6 +303,7 @@ ESC = SALIR
 
         instrucciones.setStyleSheet("""
             color:#00AAAA;
+            background-color:rgba(0,0,0,150);
         """)
 
         layout.addWidget(instrucciones)
@@ -302,6 +357,7 @@ ESC = SALIR
             f"""
             color:{color};
             font-size:18px;
+            background-color:rgba(0,0,0,150);
             """
         )
 
