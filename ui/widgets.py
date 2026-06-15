@@ -29,12 +29,35 @@ class HoloCard(QFrame):
 
         self.setStyleSheet("""
         QFrame{
-            background-color: rgba(0,20,30,180);
-            border: 2px solid #00FFFF;
-            border-radius: 12px;
-        }
-        """)
+            background:qlineargradient(
+                x1:0,
+                y1:0,
+                x2:1,
+                y2:1,
+                stop:0 #0B1220,
+                stop:0.5 #111827,
+                stop:1 #1E293B
+            );
 
+            border:2px solid #38BDF8;
+            border-radius:20px;
+            padding:10px;
+        }
+
+        QFrame:hover{
+            border:2px solid #7DD3FC;
+
+            background:qlineargradient(
+                x1:0,
+                y1:0,
+                x2:1,
+                y2:1,
+                stop:0 #172554,
+                stop:0.5 #1E3A8A,
+                stop:1 #2563EB
+            );
+        }
+         """)
         layout = QVBoxLayout()
 
         self.lblTitulo = QLabel(titulo)
