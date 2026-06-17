@@ -175,7 +175,7 @@ El proyecto fue desarrollado para practicar:
 # 📂 Estructura del Proyecto
 
 ```bash
-JARVIS/
+JARVISIA/
 │
 ├── assets/
 │   ├── sounds/
@@ -213,7 +213,7 @@ JARVIS/
 ## 1️⃣ Clonar repositorio
 
 ```bash
-git clone https://github.com/isairey/JARVIS-AI
+git clone https://github.com/isairey/JARVISIA
 ```
 
 ---
@@ -364,7 +364,7 @@ git push origin feature/nueva-funcion
 
 ---
 
-# 👨‍💻 Fundador
+# 👨‍💻 Desarrollador
 
 <div align="center">
 
