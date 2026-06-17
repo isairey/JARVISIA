@@ -55,49 +55,7 @@ El proyecto fue desarrollado para practicar:
 - Integración con Modelos LLM
 - Desarrollo de Asistentes Virtuales
 
----
 
-# 📸 Preview
-
-## 🤖 Interfaz Principal
-
-<div align="center">
-
-<img src="screenshots/main.png" width="900"/>
-
-</div>
-
----
-
-## 🎙️ Reconocimiento de Voz
-
-<div align="center">
-
-<img src="screenshots/voice.png" width="900"/>
-
-</div>
-
----
-
-## 🧠 Conversación con IA
-
-<div align="center">
-
-<img src="screenshots/chat.png" width="900"/>
-
-</div>
-
----
-
-## ⚙️ Panel de Configuración
-
-<div align="center">
-
-<img src="screenshots/settings.png" width="900"/>
-
-</div>
-
----
 
 # ✨ Características
 
